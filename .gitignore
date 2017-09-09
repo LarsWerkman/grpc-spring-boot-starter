@@ -4,4 +4,4 @@ build
 **/generated
 classes
 .gradle
-
+**/out
