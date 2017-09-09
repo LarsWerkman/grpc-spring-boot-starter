@@ -3,3 +3,5 @@ build
 *.iml
 **/generated
 classes
+.gradle
+
