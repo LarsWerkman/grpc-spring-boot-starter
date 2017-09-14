@@ -9,15 +9,16 @@ import java.util.List;
 
 import io.grpc.Server;
 import io.grpc.netty.NettyServerBuilder;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * User: Michael
  * Email: yidongnan@gmail.com
  * Date: 5/17/16
  */
-@Slf4j
 public class NettyGrpcServerFactory implements GrpcServerFactory {
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     private final GrpcServerProperties properties;
     private final List<GrpcServiceDefinition> services = Lists.newLinkedList();
@@ -35,7 +36,7 @@ public class NettyGrpcServerFactory implements GrpcServerFactory {
             builder.addService(service.getDefinition());
         }
 
-        if (this.properties.getSecurity().getEnabled()) {
+        if (this.properties.getSecurity().isEnabled()) {
             File certificateChain = new File(this.properties.getSecurity().getCertificateChainPath());
             File certificate = new File(this.properties.getSecurity().getCertificatePath());
             builder.useTransportSecurity(certificateChain, certificate);

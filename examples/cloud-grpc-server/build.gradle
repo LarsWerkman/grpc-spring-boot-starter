@@ -14,7 +14,8 @@ buildscript {
     }
     dependencyManagement {
         imports {
-            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+            mavenBom "org.springframework.cloud:spring-cloud-sleuth:${springSleuthVersion}"
+            mavenBom "org.springframework.cloud:spring-cloud-netflix:${springCloudEurekaVersion}"
         }
     }
 }

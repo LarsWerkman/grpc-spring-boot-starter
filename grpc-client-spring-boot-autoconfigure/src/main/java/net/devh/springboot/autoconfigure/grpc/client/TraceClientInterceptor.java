@@ -1,28 +1,19 @@
 package net.devh.springboot.autoconfigure.grpc.client;
 
+import io.grpc.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.cloud.sleuth.Span;
 import org.springframework.cloud.sleuth.SpanInjector;
 import org.springframework.cloud.sleuth.Tracer;
-
-import io.grpc.CallOptions;
-import io.grpc.Channel;
-import io.grpc.ClientCall;
-import io.grpc.ClientInterceptor;
-import io.grpc.ClientInterceptors;
-import io.grpc.ForwardingClientCallListener;
-import io.grpc.Metadata;
-import io.grpc.MethodDescriptor;
-import io.grpc.Status;
-import io.grpc.StatusException;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * User: Michael
  * Email: yidongnan@gmail.com
  * Date: 2016/12/8
  */
-@Slf4j
 public class TraceClientInterceptor implements ClientInterceptor {
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     private Tracer tracer;
     private final SpanInjector<Metadata> spanInjector;

@@ -2,7 +2,12 @@ package net.devh.springboot.autoconfigure.grpc.server;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-
+import io.grpc.BindableService;
+import io.grpc.ServerInterceptor;
+import io.grpc.ServerInterceptors;
+import io.grpc.ServerServiceDefinition;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.context.ApplicationContext;
@@ -13,21 +18,15 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
-import io.grpc.BindableService;
-import io.grpc.ServerInterceptor;
-import io.grpc.ServerInterceptors;
-import io.grpc.ServerServiceDefinition;
-import lombok.extern.slf4j.Slf4j;
-
 /**
  * User: Michael
  * Email: yidongnan@gmail.com
  * Date: 5/17/16
  */
-@Slf4j
 public class AnnotationGrpcServiceDiscoverer implements ApplicationContextAware, GrpcServiceDiscoverer {
 
     private ApplicationContext applicationContext;
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext)

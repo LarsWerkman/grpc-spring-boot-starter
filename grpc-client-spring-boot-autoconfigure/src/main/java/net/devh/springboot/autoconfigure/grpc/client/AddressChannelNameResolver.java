@@ -2,27 +2,26 @@ package net.devh.springboot.autoconfigure.grpc.client;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
-
-import java.net.InetSocketAddress;
-import java.util.List;
-import java.util.concurrent.ExecutorService;
-
-import javax.annotation.concurrent.GuardedBy;
-
 import io.grpc.Attributes;
 import io.grpc.EquivalentAddressGroup;
 import io.grpc.NameResolver;
 import io.grpc.Status;
 import io.grpc.internal.SharedResourceHolder;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.annotation.concurrent.GuardedBy;
+import java.net.InetSocketAddress;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
 
 /**
  * User: Michael
  * Email: yidongnan@gmail.com
  * Date: 5/17/16
  */
-@Slf4j
 public class AddressChannelNameResolver extends NameResolver {
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     private final String name;
     private final GrpcChannelProperties properties;
